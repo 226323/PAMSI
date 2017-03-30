@@ -11,6 +11,7 @@ class Istack
 	virtual void remove()=0;            //kasuje element ze szczytu stosu
 	virtual int size()=0;               //zwraca ilość elementów na stosie
 	virtual int pop()=0;                //pobiera i zwraca element ze szczytu stosu
+	virtual int& operator[](int element)=0;
 };
 
 #endif
