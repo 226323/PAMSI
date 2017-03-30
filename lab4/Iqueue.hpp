@@ -8,9 +8,9 @@ class Iqueue
 	public:
 
 	virtual void enqueue(int element)=0;
-	virtual void remove(int position)=0;
+	virtual void remove()=0;
 	virtual int size()=0;
-	virtual int dequeue(int position)=0;
+	virtual int dequeue()=0;
 };
 
 #endif
