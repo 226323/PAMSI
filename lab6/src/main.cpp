@@ -1,38 +1,58 @@
 #include "../inc/Node.hpp"
 #include "../inc/List.hpp"
-#include "../inc/Tablica.hpp"
+#include "../inc/Map.hpp"
 #include "../inc/Timer.hpp"
 #include <cstdlib>
 #include <ctime>
+#include <fstream>
 #include <iostream>
 #include <string>
 using namespace std;
+#define POMIARY 20
 
+double srednia(double tablica[])
+{
+	double x;
+	x=0;
+	for(int i=0; i<POMIARY; i++)
+    {
+		x=x+tablica[i];
+	}
+	return x/POMIARY;
+}
+
+void pomiar(int j)
+{
+    Map obiekt;
+	std::ifstream plik;
+	double pomiary[POMIARY];
+	Timer t;
+	std::string klucz, wartosc;
+    plik.open("klucze.txt");
+    while (!plik.eof())
+    {
+        plik>>klucz>>wartosc;
+        obiekt.dodawanie(klucz, wartosc,j);
+    }
+    for(int i=0;i<POMIARY;i++)
+        {
+
+            plik.close();
+            t.begin();
+            obiekt.szukanie("goktp",j);
+            t.stop();
+            pomiary[i]=t.duration();
+        }
+        //std::cout << "Sredni czas szukania dla haszowania nr " << j << "wynosi: " << srednia(pomiary) << std::endl;
+        std::cout << srednia(pomiary) << std::endl;
+}
 
 int main()
 {
-	Tablica t;
-	int kupa;
-	std::string cos1,cos2;
-	while(kupa!="0")
-	{
-	    cout << "1 dodanie elementu, 2 znalezienie elementu";
-	    cin >> kupa;
-		switch(kupa)
-		{
-        case 1:
-            cout << "Podaj klucz: ";
-            cin >> cos1;
-            cout << "Podaj wartosc: ";
-            cin >> cos2;
-            t.add(cos1,cos2);
-            break;
-
-        case 2:
-            cout << "Podaj szukany klucz: ";
-            cin >> cos1;
-            cout << "Wartosc szukanego klucza to: " << t[cos1];
-		}
-	}
+	for(int i=1;i<3;i++)
+    {
+        pomiar(i);
+        std::cout << "zmiana haszowanka xDD"<<std::endl;
+    }
 	return 0;
 }

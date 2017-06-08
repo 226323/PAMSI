@@ -92,6 +92,7 @@ public:
 			tmp=tmp->next;
 		}
 		cout <<"Brak szukanego elementu";
+		return ("error");
 	}
 
 	void print()

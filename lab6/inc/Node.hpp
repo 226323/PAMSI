@@ -34,7 +34,7 @@ class Node
 		return prev;
 	}
 	friend class List;
-	friend class Tablica;
+	friend class Map;
 };
 
 #endif

@@ -1,6 +1,6 @@
 CXX=g++
 CXXFLAGS=-std=c++11 -Wall -pedantic
-BIN=quicksort.exe
+BIN=map.exe
 
 
 SRC=$(wildcard src/*.cpp)

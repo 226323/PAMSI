@@ -1,14 +1,15 @@
-#ifndef Timer_HPP
-#define Timer_HPP
+#ifndef TIMER_HPP
+#define TIMER_HPP
 #include <chrono>
 using namespace std::chrono;
 #include <iostream>
+using namespace std;
 #include "iTimer.hpp"
 class Timer : public iTimer
 {
     public:
 	high_resolution_clock::time_point start, end;
-	std::chrono::milliseconds ms;
+	std::chrono::nanoseconds ns;
 
     void begin()
 	{
@@ -20,18 +21,11 @@ class Timer : public iTimer
     	end = high_resolution_clock::now();
     }
 
-	void duration_out()
-	{
-		ms = duration_cast<milliseconds>(end-start);
-		cout<<std::fixed<< "Czas trwania: " << ms.count() << endl;
-	}
-
 	double duration()
 	{
-		ms = duration_cast<milliseconds>(end-start);
-		return double(ms.count());
+		ns = duration_cast<nanoseconds>(end-start);
+		return double(ns.count());
 	}
-
 };
 
 #endif
